@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinenTrack — учёт белья и вещей номера</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-role="">
+
+  <!-- ЭКРАН ВХОДА -->
+  <section id="login-screen" class="screen">
+    <div class="login-card">
+      <h1 class="logo">🧺 LinenTrack</h1>
+      <p class="muted">Где бельё · Кто изменил · Почему расхождение</p>
+      <h2>Войти как</h2>
+      <div id="user-list" class="user-grid"><!-- демо-пользователи --></div>
+      <button id="btn-reset-demo" class="ghost small">Сбросить демо-данные</button>
+    </div>
+  </section>
+
+  <!-- ОСНОВНОЙ МАКЕТ -->
+  <div id="app-shell" hidden>
+    <header class="topbar">
+      <span class="logo small-logo">🧺 LinenTrack</span>
+      <nav id="role-nav" class="tabs"></nav>
+      <div class="who">
+        <span id="current-user"></span>
+        <span id="offline-badge" class="badge offline" title="Данные будут отправлены при появлении сети">офлайн</span>
+        <button id="btn-logout" class="ghost small">Выйти</button>
+      </div>
+    </header>
+
+    <main id="view"><!-- сюда рендерятся экраны роли --></main>
+
+    <footer class="statusbar">
+      <span id="queue-info"></span>
+    </footer>
+  </div>
+
+  <!-- МОДАЛКА ПРИЧИНЫ (обязательна для списания/расхождения) -->
+  <dialog id="reason-dialog">
+    <form method="dialog" id="reason-form">
+      <h3>Причина изменения</h3>
+      <p id="reason-context" class="muted"></p>
+      <select id="reason-select" required></select>
+      <input id="reason-comment" type="text" placeholder="Комментарий (необязательно)" />
+      <menu>
+        <button value="cancel" class="ghost">Отмена</button>
+        <button value="ok" id="reason-ok" class="primary">Сохранить</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- МОДАЛКА ТАЙМЛАЙНА ЛОТА -->
+  <dialog id="lot-dialog">
+    <div class="dialog-body">
+      <h3 id="lot-title"></h3>
+      <div id="lot-timeline"></div>
+      <menu><button id="lot-close" class="ghost">Закрыть</button></menu>
+    </div>
+  </dialog>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/audit.js"></script>
+  <script src="js/reports.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

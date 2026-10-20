@@ -1,0 +1,79 @@
+/* ===== Базовое ===== */
+:root {
+  --bg: #f5f6f8; --card: #fff; --ink: #1d2733; --muted: #6b7a8c;
+  --accent: #0b7285; --warn: #b3541e; --bad: #b02a37; --ok: #2b8a3e;
+  --radius: 14px; --shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+       background: var(--bg); color: var(--ink); }
+h1,h2,h3 { margin: .2em 0; }
+.muted { color: var(--muted); font-size: .9rem; }
+button { font: inherit; cursor: pointer; }
+.primary { background: var(--accent); color:#fff; border:none; padding:.6em 1.1em; border-radius:var(--radius); }
+.ghost { background:transparent; border:1px solid var(--muted); color:var(--muted); padding:.35em .8em; border-radius:var(--radius); }
+.small { font-size: .85rem; }
+
+/* ===== Экран входа ===== */
+.screen { min-height: 100vh; display:flex; align-items:center; justify-content:center; padding:1rem; }
+.login-card { background:var(--card); box-shadow:var(--shadow); border-radius:var(--radius);
+              padding:2rem; max-width: 520px; width:100%; text-align:center; }
+.logo { font-size: 2rem; }
+.user-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap:.6rem; margin:1rem 0; }
+.user-btn { display:flex; flex-direction:column; gap:.2rem; padding:.8rem; border-radius:var(--radius);
+            border:1px solid #dde3ea; background:#fbfcfe; }
+.user-btn b { font-size: 1rem; }
+.user-btn .role-tag { font-size:.75rem; color:var(--muted); }
+
+/* ===== Шапка и вкладки ===== */
+.topbar { display:flex; align-items:center; gap:1rem; padding:.6rem 1rem;
+          background:var(--card); box-shadow:var(--shadow); position:sticky; top:0; z-index:5; flex-wrap:wrap; }
+.small-logo { font-weight:700; }
+.tabs { display:flex; gap:.4rem; flex:1; flex-wrap:wrap; }
+.tab { padding:.45em .9em; border-radius:var(--radius); border:none; background:transparent; }
+.tab.active { background:var(--accent); color:#fff; }
+.who { display:flex; align-items:center; gap:.5rem; }
+.badge { font-size:.75rem; padding:.15em .6em; border-radius:99px; }
+.badge.offline { background:#ffe8cc; color:var(--warn); }
+.badge.online { background:#d3f9d8; color:var(--ok); }
+main { padding: 1rem; max-width: 1200px; margin: 0 auto; }
+.statusbar { padding:.4rem 1rem; font-size:.8rem; color:var(--muted); }
+
+/* ===== Карточки/списки ===== */
+.card { background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:1rem; margin-bottom:1rem; }
+.grid-2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1rem; }
+table { width:100%; border-collapse: collapse; font-size:.92rem; }
+th, td { text-align:left; padding:.45em .5em; border-bottom:1px solid #edf1f5; vertical-align:top; }
+.chip { display:inline-block; padding:.1em .6em; border-radius:99px; font-size:.78rem; background:#e9ecef; }
+.chip.ok{background:#d3f9d8;color:var(--ok)} .chip.dirty{background:#fff3bf}
+.chip.laundry{background:#d0ebff;color:#1864ab} .chip.damaged{background:#ffe3e3;color:var(--bad)}
+.chip.written_off{background:#e9ecef;color:var(--muted)} .chip.missing{background:#ffd8a8;color:var(--warn)}
+.diff-bad { color:var(--bad); font-weight:600; }
+.diff-ok { color:var(--ok); }
+
+/* ===== Кнопки действий горничной (крупная плитка) ===== */
+.action-tile { width:100%; padding:1rem; margin:.3rem 0; border-radius:var(--radius);
+               border:1px solid #dde3ea; background:#fbfcfe; font-size:1.05rem; text-align:left; }
+.action-tile:active { background:#e6f4f8; }
+
+/* ===== Таймлайн ===== */
+.timeline { list-style:none; margin:0; padding:0; }
+.timeline li { border-left:3px solid var(--accent); padding:.3rem 0 .3rem .8rem; margin-bottom:.5rem; }
+.timeline .when { color:var(--muted); font-size:.8rem; }
+
+/* ===== Диалоги ===== */
+dialog { border:none; border-radius:var(--radius); padding:1.2rem; max-width: 560px; width: 92vw; box-shadow:var(--shadow);}
+dialog::backdrop { background: rgba(10,20,30,.4); }
+dialog select, dialog input[type=text] { width:100%; padding:.5em; margin:.4em 0; border-radius:8px; border:1px solid #ccd5dd; }
+dialog menu { display:flex; justify-content:flex-end; gap:.5rem; padding:0; margin-top:.6rem; }
+
+/* ===== Адаптив: телефон/планшет/ПК ===== */
+@media (max-width: 720px) {           /* горничная с телефона */
+  .topbar { padding:.5rem .6rem; }
+  main { padding:.6rem; }
+  table { font-size:.85rem; }
+  th.hide-sm, td.hide-sm { display:none; }
+}
+@media (min-width: 721px) and (max-width: 1024px) { /* планшет */
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+}
